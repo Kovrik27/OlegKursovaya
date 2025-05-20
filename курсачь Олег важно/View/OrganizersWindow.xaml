@@ -35,14 +35,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <!-- Таблица организаторов -->
-            <ListView Grid.Row="1" ItemsSource="{Binding Organizers}" SelectionChanged="ListView_SelectionChanged">
+            <ListView Grid.Row="1" ItemsSource="{Binding Organizers}" SelectedItem="{Binding SelectedOrganizer}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Lastname}"/>
                         <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding  Name}"/>
                         <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Firstname}"/>
                         <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Number}"/>
-                        <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding specialization}"/>
+                        <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Specialization}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -51,9 +51,11 @@
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,0,0,0">
                 <Button Content="Добавить" Width="120" Height="30" Margin="0,0,0,10"
                         Background="#FF4CAF50" Foreground="White"
-                       
-               
+                        Command="{Binding OpenAddOrganizerWindow}"
                         />
+                <Button Content="Изменить " Width="120" Height="30"
+                    Foreground="Black" RenderTransformOrigin="0.502,2.061"
+                 />
             </StackPanel>
         </Grid>
     </Grid>

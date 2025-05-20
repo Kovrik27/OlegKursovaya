@@ -26,9 +26,5 @@ namespace курсачь_Олег_важно.View
             InitializeComponent();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

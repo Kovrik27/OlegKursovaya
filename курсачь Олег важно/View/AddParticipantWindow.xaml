@@ -16,28 +16,29 @@
     
     <Grid>
 
-        <StackPanel>
+        <StackPanel DataContext="{Binding Participant}">
             <Label Content="Добавление нового участника" FontSize="16" FontWeight="Bold" 
-                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
             <Label Content="Фамилия участника:"/>
-            <TextBox />
+            <TextBox Text="{Binding LastName }"/>
             <Label Content="Имя участника:"/>
-            <TextBox />
+            <TextBox Text="{Binding Name }"/>
             <Label Content="Отчество участника:"/>
-            <TextBox />
+            <TextBox Text="{Binding Surname }"/>
             <Label Content="Номер телефона:"/>
-            <TextBox/>
+            <TextBox Text="{Binding Namber }"/>
             <Label Content="Мероприятие:"/>
-            <ComboBox Text="{Binding event }"/>
+            <ComboBox Text="{Binding Event }"/>
 
             <Button Content="Добавить" Width="120" Height="35" 
                         HorizontalAlignment="Center" Background="#FF4CAF50" 
                         Foreground="White"/>
+            <Button Content="Изменить " Width="120" Height="35" 
+             Foreground="Black"/>
         </StackPanel>
-
-
-                
-               
     </Grid>
 </Window>
+    
+    
+    
