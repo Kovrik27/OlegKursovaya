@@ -1,0 +1,43 @@
+﻿<Window x:Class="курсачь_Олег_важно.View.AddFeedbackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:курсачь_Олег_важно.View"
+        xmlns:vm="clr-namespace:курсачь_Олег_важно.ViewModel"
+        DataContext="{DynamicResource addFeedbackVM}"
+        mc:Ignorable="d"
+        Title="AddFeedbackWindow" Height="450" Width="400">
+
+        <Window.Resources>
+        <vm:AddFeedbackVM x:Key="addFeedbackVM"/>
+        </Window.Resources>
+
+    
+        <Grid>
+        
+
+        <!-- Левая часть - форма ввода -->
+        <StackPanel DataContext="{Binding Feedback}">
+            <Label Content="Выберите мероприятие:"/>
+            <ComboBox ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}"/> 
+            <Label Content="Фамилия участника:"/>
+            <TextBox Text="{Binding Lastname}"/>
+            <Label Content="Имя участника:"/>
+            <TextBox Text="{Binding Name}"/>
+            <Label Content="Отчество участника:"/>
+            <TextBox Text="{Binding Surname}"/>
+            <Label Content="Оценка участника(По пятибалльной шкале):"/>
+            <TextBox Text="{Binding Rating}"/>
+
+            <Label Content="Текст отзыва:"/>
+            <TextBox Text="{Binding Comment}"
+                     AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="30"/>
+
+            <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Center"
+                    />
+        </StackPanel>
+
+        
+    </Grid>
+</Window>

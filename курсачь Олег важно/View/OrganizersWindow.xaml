@@ -1,0 +1,60 @@
+﻿<Window x:Class="курсачь_Олег_важно.View.OrganizersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:курсачь_Олег_важно.View"
+        xmlns:vm="clr-namespace:курсачь_Олег_важно.ViewModel"
+        DataContext="{DynamicResource organizersVM}"
+        mc:Ignorable="d"
+        Title="OrganizersWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <vm:OrganizersVM x:Key="organizersVM"/>
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Label Grid.Row="0" Content="ОРГАНИЗАТОРЫ" 
+               FontSize="18" FontWeight="Bold"
+               HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- Таблица организаторов -->
+            <ListView Grid.Row="1" ItemsSource="{Binding Organizers}" SelectionChanged="ListView_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Lastname}"/>
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding  Name}"/>
+                        <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Firstname}"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Number}"/>
+                        <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding specialization}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- Кнопки управления -->
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,0,0,0">
+                <Button Content="Добавить" Width="120" Height="30" Margin="0,0,0,10"
+                        Background="#FF4CAF50" Foreground="White"
+                       
+               
+                        />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

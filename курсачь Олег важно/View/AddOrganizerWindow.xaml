@@ -1,0 +1,56 @@
+﻿<Window x:Class="курсачь_Олег_важно.View.AddOrganizerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:курсачь_Олег_важно.View"
+        xmlns:vm="clr-namespace:курсачь_Олег_важно.ViewModel"
+        mc:Ignorable="d"
+      DataContext="{DynamicResource addOrganizerVM}"
+        Title="AddOrganizerWindow" Height="450" Width="400">
+
+    <Window.Resources>
+        <vm:AddOrganizerVM x:Key="addOrganizerVM"/>
+    </Window.Resources>
+    <Grid >
+
+        <!-- Левая часть - форма добавления -->
+        <StackPanel DataContext="{Binding Organizer}">
+                <Label Content="Добавить нового организатора" 
+                   FontSize="16" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+            <Label Content="Фамилия организатора:"/>
+            <TextBox Text="{Binding Lastname}"/>
+            <Label Content="Имя организатора:"/>
+            <TextBox Text="{Binding Name}" />
+            <Label Content="Отчество организатора:"/>
+            <TextBox Text="{Binding Surname}"/>
+            <Label Content="Телефон:"/>
+            <TextBox Text="{Binding Phone}"/>
+            <Label Content="Специальность:"/>
+            <TextBox Text="{Binding Speciality}"/>
+
+
+            <Button Content="Сохранить" Width="100" Height="30"
+                        Background="#FF4CAF50" Foreground="White"
+                        />
+                    
+
+            </StackPanel>
+
+            <!-- Правая часть - список организаторов -->
+            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                   
+
+                </Grid>
+            </Border>
+        </Grid>
+</Window>
+
