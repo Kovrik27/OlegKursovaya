@@ -25,8 +25,7 @@
             <PasswordBox x:Name="txtPassword" FontSize="14" Margin="0,0,0,20"/>
 
             <!-- Кнопка Войти -->
-            <Button x:Name="btnLogin" Content="Войти" Height="30"
-                    Background="#FF4CAF50" Foreground="White"
+            <Button x:Name="btnLogin" Content="Войти" Height="30" Click="LoginButton_Click"
                    />
 
         </StackPanel>

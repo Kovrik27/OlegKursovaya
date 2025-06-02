@@ -13,10 +13,14 @@
         <vm:AddOrganizerVM x:Key="addOrganizerVM"/>
     </Window.Resources>
     <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
         <!-- Левая часть - форма добавления -->
         <StackPanel DataContext="{Binding Organizer}">
-                <Label Content="Добавить нового организатора" 
+            <Label Content="Добавить нового организатора" 
                    FontSize="16" FontWeight="Bold"
                    HorizontalAlignment="Center" Margin="0,0,0,15"/>
 
@@ -31,26 +35,15 @@
             <Label Content="Специальность:"/>
             <TextBox Text="{Binding Speciality}"/>
 
+        </StackPanel>
 
+        <StackPanel Grid.Row="1">
             <Button Content="Сохранить" Width="100" Height="30"
-                        Background="#FF4CAF50" Foreground="White"
-                        />
-                    
+            Background="#FF4CAF50" Foreground="White" Command="{Binding Save}"/>
+            <Button Content="Изменить " Width="120" Height="35" 
+Foreground="Black" Command="{Binding Save}"/>
+        </StackPanel>
 
-            </StackPanel>
-
-            <!-- Правая часть - список организаторов -->
-            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Padding="5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                   
-
-                </Grid>
-            </Border>
-        </Grid>
+    </Grid>
 </Window>
 

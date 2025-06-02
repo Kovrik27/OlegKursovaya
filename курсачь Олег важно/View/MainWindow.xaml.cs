@@ -26,6 +26,22 @@ namespace курсачь_Олег_важно.View
             //InitializeComponent();
         }
 
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            string login = txtLogin.Text;
+            string password = txtPassword.Text;
+
+            if(login == "Admin" &&  password == "Admin")
+            {
+                MessageBox.Show("Успешно");
+                DashboardWindow dashboardWindow = new DashboardWindow();
+                dashboardWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Неверный логин или пароль");
+            }
+        }
 
     }
 }

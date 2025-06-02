@@ -26,6 +26,6 @@ namespace курсачь_Олег_важно.View
             InitializeComponent();
         }
 
-     
+       
     }
 }

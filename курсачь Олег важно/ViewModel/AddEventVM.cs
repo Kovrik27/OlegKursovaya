@@ -32,5 +32,10 @@ namespace курсачь_Олег_важно.ViewModel
             });
 
         }
+
+        internal void SetEditEvent(Events selectedEvent)
+        {
+            Events = selectedEvent;
+        }
     }
 }

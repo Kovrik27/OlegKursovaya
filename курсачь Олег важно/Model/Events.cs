@@ -10,7 +10,7 @@ namespace курсачь_Олег_важно.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public string Location { get; set; }
         public int OrganizerId  { get; set; }
         public Organizer Organizer { get; set; }

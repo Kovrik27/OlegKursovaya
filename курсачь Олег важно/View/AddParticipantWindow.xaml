@@ -15,7 +15,10 @@
     </Window.Resources>
     
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <StackPanel DataContext="{Binding Participant}">
             <Label Content="Добавление нового участника" FontSize="16" FontWeight="Bold" 
                    HorizontalAlignment="Center" Margin="0,0,0,20"/>
@@ -31,11 +34,14 @@
             <Label Content="Мероприятие:"/>
             <ComboBox Text="{Binding Event }"/>
 
+           
+        </StackPanel>
+        <StackPanel Grid.Row="1">
             <Button Content="Добавить" Width="120" Height="35" 
-                        HorizontalAlignment="Center" Background="#FF4CAF50" 
-                        Foreground="White"/>
+             HorizontalAlignment="Center" Background="#FF4CAF50" 
+             Foreground="White" Command="{Binding Save}"/>
             <Button Content="Изменить " Width="120" Height="35" 
-             Foreground="Black"/>
+  Foreground="Black" Command="{Binding Save}"/>
         </StackPanel>
     </Grid>
 </Window>

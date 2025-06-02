@@ -11,25 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using курсачь_Олег_важно.Model;
-using курсачь_Олег_важно.ViewModel;
 
 namespace курсачь_Олег_важно.View
 {
     /// <summary>
-    /// Логика взаимодействия для AddEventWindow.xaml
+    /// Логика взаимодействия для ParticipantsWindow.xaml
     /// </summary>
-    public partial class AddEventWindow : Window
+    public partial class ParticipantsWindow : Window
     {
-        public AddEventWindow()
+        public ParticipantsWindow()
         {
             InitializeComponent();
-        }
-
-        public AddEventWindow(Events selectedEvent)
-        {
-            InitializeComponent();
-            ((AddEventVM)DataContext).SetEditEvent(selectedEvent);
         }
     }
 }

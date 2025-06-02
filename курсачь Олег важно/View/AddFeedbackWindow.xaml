@@ -15,7 +15,10 @@
 
     
         <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
         <!-- Левая часть - форма ввода -->
         <StackPanel DataContext="{Binding Feedback}">
@@ -33,9 +36,11 @@
             <Label Content="Текст отзыва:"/>
             <TextBox Text="{Binding Comment}"
                      AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="30"/>
-
-            <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Center"
-                    />
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Center" Command="{Binding Save}"/>
+            <Button Content="Изменить " Width="120" Height="35" 
+Foreground="Black" Command="{Binding Save}"/>
         </StackPanel>
 
         

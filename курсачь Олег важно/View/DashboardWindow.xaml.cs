@@ -21,5 +21,27 @@ namespace курсачь_Олег_важно.View
             InitializeComponent();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            EventsWindow eventsWindow = new EventsWindow();
+            eventsWindow.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            OrganizersWindow organizersWindow = new OrganizersWindow();
+            organizersWindow.Show();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            FeedbackWindow feedbackWindow = new FeedbackWindow();
+            feedbackWindow.Show();
+        }
     }
 }

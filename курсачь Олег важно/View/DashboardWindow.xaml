@@ -22,12 +22,13 @@
 
         <!-- Панель кнопок -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Участники" Width="130" Margin="7"/>
-            <Button Content="Мероприятия" Width="130" Margin="7" />
-            <Button Content="Организаторы" Width="130" Margin="7" />
-            <Button Content="Отзывы" Width="130" Margin="7" />
-
+            <Button Content="Участники" Width="130" Margin="7" Click="Button_Click"/>
+            <Button Content="Мероприятия" Width="130" Margin="7" Click="Button_Click_1"/>
+            <Button Content="Организаторы" Width="130" Margin="7" Click="Button_Click_2"/>
+            <Button Content="Отзывы" Width="130" Margin="7" Click="Button_Click_3" />
         </StackPanel>
+
+       
 
         <!-- Поисковая строка -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,0,20,40">
