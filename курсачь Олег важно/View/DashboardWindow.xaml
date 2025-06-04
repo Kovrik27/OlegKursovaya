@@ -40,7 +40,7 @@
         </StackPanel>
 
         <!-- Таблица данных -->
-        <ListView ItemsSource="{Binding Events}" Grid.Row="2" SelectedItem="{Binding SelectedEvent}">
+        <ListView ItemsSource="{Binding Events}" Grid.Row="2" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>

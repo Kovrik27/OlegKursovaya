@@ -14,7 +14,7 @@ namespace курсачь_Олег_важно.ViewModel
         private ObservableCollection<Organizer> organizers;
         public ObservableCollection<Organizer> Organizers
         {
-            get => Organizers;
+            get => organizers;
             set
             {
                 organizers = value;

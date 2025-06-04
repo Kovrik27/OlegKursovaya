@@ -13,6 +13,6 @@ namespace курсачь_Олег_важно.Model
         public DateTime Date { get; set; } = DateTime.Now;
         public string Location { get; set; }
         public int OrganizerId  { get; set; }
-        public Organizer Organizer { get; set; }
+        public Organizer Organizer { get; set; } = new();
     }
 }

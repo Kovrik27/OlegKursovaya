@@ -24,7 +24,7 @@ namespace курсачь_Олег_важно.ViewModel
         {
             string sql = "SELECT * FROM Events";
 
-            Events = new ObservableCollection<Events>(EventsRepository.Instance.GetAllEvents(sql));
+            Events = new ObservableCollection<Events>(EventsRepository.Instance.GetAllEvents());
         }
     }
 }

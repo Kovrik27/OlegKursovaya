@@ -24,16 +24,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel DataContext="{Binding Events}">
-            
-            <Label Content="Название мероприятия:"/>
-            <TextBox Text="{Binding Name}"/>
-            <Label Content="Дата:"/>
-            <TextBox Text="{Binding Date}"/>
-            <Label Content="Локация:"/>
-            <TextBox Text="{Binding Location}"/>
+        <StackPanel >
+            <StackPanel DataContext="{Binding Events}">
+                <Label Content="Название мероприятия:"/>
+                <TextBox Text="{Binding Name}"/>
+                <Label Content="Дата:"/>
+                <TextBox Text="{Binding Date}"/>
+                <Label Content="Локация:"/>
+                <TextBox Text="{Binding Location}"/>
+            </StackPanel>
             <Label Content="Организатор:"/>
-            <ComboBox Text="{Binding Organizer}"/>
+            <ComboBox ItemsSource="{Binding Organizers}" SelectedItem="{Binding Events.Organizer}" DisplayMemberPath="Lastname"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Center" Command="{Binding Save}"/>

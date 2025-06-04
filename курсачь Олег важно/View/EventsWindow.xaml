@@ -24,7 +24,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Data}"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>
                     <GridViewColumn Header="Место" DisplayMemberBinding="{Binding Location}"/>
                 </GridView>
             </ListView.View>

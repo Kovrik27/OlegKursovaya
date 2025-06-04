@@ -25,9 +25,10 @@ namespace курсачь_Олег_важно.Model
             }
         }
 
-        internal IEnumerable<Events> GetAllEvents(string sql)
+        internal IEnumerable<Events> GetAllEvents()
         {
             var result = new List<Events>();
+            string sql = "SELECT e.ID, e.Name, e.Date, e.Location, o.Lastname FROM Events e JOIN Organizer o ON e.OrganizerId = o.ID";
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return result;
@@ -40,9 +41,13 @@ namespace курсачь_Олег_важно.Model
                 {
                     events = new Events();
                     events.Id = reader.GetInt32("ID");
-                    events.Name = reader.GetString("Title");
+                    events.Name = reader.GetString("Name");
                     events.Date = reader.GetDateTime("Date");
                     events.Location = reader.GetString("Location");
+                    events.Organizer = new Organizer()
+                    {
+                        Lastname = reader.GetString("Lastname")
+                    };
                     result.Add(events);
                 }
             }
@@ -58,14 +63,14 @@ namespace курсачь_Олег_важно.Model
             if (connect == null)
                 return;
 
-            int id = DB.Instance.GetAutoID("Event");
+            int id = DB.Instance.GetAutoID("Events");
 
-            string sql = "INSERT INTO Event VALUES (0, @name, @location, @date, @organizerId)";
+            string sql = "INSERT INTO Events VALUES (0, @name, @date, @location, @organizerId)";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("name", events.Name));
-                mc.Parameters.Add(new MySqlParameter("location", events.Location));
                 mc.Parameters.Add(new MySqlParameter("date", events.Date));
+                mc.Parameters.Add(new MySqlParameter("location", events.Location));
                 mc.Parameters.Add(new MySqlParameter("organizerId", events.OrganizerId));
                 mc.ExecuteNonQuery();
             }

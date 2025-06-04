@@ -22,6 +22,8 @@ namespace курсачь_Олег_важно.ViewModel
             }
         }
 
+
+
         public Events SelectedEvent { get; set; }
         public CommandVM OpenAddEventWindow
         {
@@ -35,9 +37,8 @@ namespace курсачь_Олег_важно.ViewModel
 
         public EventsVM() 
         {
-            string sql = "SELECT * FROM Events";
 
-            Events = new ObservableCollection<Events>(EventsRepository.Instance.GetAllEvents(sql));
+            Events = new ObservableCollection<Events>(EventsRepository.Instance.GetAllEvents());
 
             OpenAddEventWindow = new CommandVM(() =>
             {

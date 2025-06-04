@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,26 +11,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Markup;
 
 namespace курсачь_Олег_важно.View
 {
     /// <summary>
-    /// Логика взаимодействия для FeedbackWindow.xaml
+    /// Логика взаимодействия для AuthorizationWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AuthorizationWindow : Window
     {
-        public MainWindow()
+        public AuthorizationWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
-
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string login = txtLogin.Text;
-            string password = txtPassword.Text;
+            string password = txtPassword.Password;
 
-            if(login == "Admin" &&  password == "Admin")
+            if (login == "Admin" && password == "Admin")
             {
                 MessageBox.Show("Успешно");
                 DashboardWindow dashboardWindow = new DashboardWindow();

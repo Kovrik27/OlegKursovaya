@@ -94,7 +94,7 @@ namespace курсачь_Олег_важно.Model
 
             int id = DB.Instance.GetAutoID("Participant");
 
-            string sql = "INSERT INTO Participant VALUES (0, @lastname, @name, @surname, @phone, @email)";
+            string sql = "INSERT INTO Participants VALUES (0, @lastname, @name, @surname, @phone, @email)";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("lastname", participant.Lastname));
@@ -125,7 +125,7 @@ namespace курсачь_Олег_важно.Model
             if (connect == null)
                 return;
 
-            string sql = "UPDATE Organizer SET Lastname = @lastname, Name = @name, Surname = @surname, Phone = @phone, Email = @email" + participant.Id;
+            string sql = "UPDATE Participants SET Lastname = @lastname, Name = @name, Surname = @surname, Phone = @phone, Email = @email" + participant.Id;
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("lastname", participant.Lastname));
