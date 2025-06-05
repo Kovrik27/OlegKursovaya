@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace курсачь_Олег_важно.View
 {
-    /// <summary>
+    
     /// Логика взаимодействия для FeedbackWindow.xaml
     /// </summary>
     public partial class FeedbackWindow : Window
