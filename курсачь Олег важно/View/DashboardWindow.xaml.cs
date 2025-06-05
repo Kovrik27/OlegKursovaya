@@ -23,7 +23,8 @@ namespace курсачь_Олег_важно.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            ParticipantsWindow ParticipantsWindow = new ParticipantsWindow();
+            ParticipantsWindow.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

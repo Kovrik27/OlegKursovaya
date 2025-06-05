@@ -136,6 +136,11 @@ namespace курсачь_Олег_важно.Model
                 mc.ExecuteNonQuery();
             }
         }
+
+        internal IEnumerable<Participant> GetAllParticipant()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

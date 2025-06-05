@@ -28,7 +28,7 @@ namespace курсачь_Олег_важно.View
             string login = txtLogin.Text;
             string password = txtPassword.Password;
 
-            if (login == "Admin" && password == "Admin")
+            if (login == "Oleg" && password == "Oleg")
             {
                 MessageBox.Show("Успешно");
                 DashboardWindow dashboardWindow = new DashboardWindow();
