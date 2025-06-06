@@ -67,7 +67,7 @@ namespace курсачь_Олег_важно.Model
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return;
-              
+                
             int id = DB.Instance.GetAutoID("Feedback");
 
             string sql = "INSERT INTO Feedback VALUES (0, @eventid, @participantid, @participantName,  @rating, @comment)";
