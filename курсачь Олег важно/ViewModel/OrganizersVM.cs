@@ -27,12 +27,12 @@ namespace курсачь_Олег_важно.ViewModel
         public CommandVM OpenAddOrganizerWindow
         {
             get; set;
-        }
-
+        }  
+               
         public OrganizersVM()
         {
             string sql = "SELECT * FROM Organizer";
-
+               
             Organizers = new ObservableCollection<Organizer>(OrganizersRepository.Instance.GetAllOrganizers(sql));
             OpenAddOrganizerWindow = new CommandVM(() =>
             {
