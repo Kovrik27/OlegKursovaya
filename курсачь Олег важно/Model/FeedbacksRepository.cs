@@ -82,7 +82,7 @@ namespace курсачь_Олег_важно.Model
             }
 
         }
-          
+             
         internal void UpdateFeedback(Feedback feedback)
         {
             var connect = DB.Instance.GetConnection();
