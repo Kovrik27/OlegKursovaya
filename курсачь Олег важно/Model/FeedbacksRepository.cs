@@ -66,7 +66,7 @@ namespace курсачь_Олег_важно.Model
         {
             var connect = DB.Instance.GetConnection();
             if (connect == null)
-                return;
+                return; 
                 
             int id = DB.Instance.GetAutoID("Feedback");
 
