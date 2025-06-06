@@ -88,6 +88,9 @@ namespace курсачь_Олег_важно.Model
                 mc.Parameters.Add(new MySqlParameter("surname", organizer.Surname));
                 mc.Parameters.Add(new MySqlParameter("phone", organizer.Phone));
                 mc.Parameters.Add(new MySqlParameter("speciality", organizer.Speciality));
+                      
+                
+                
                 mc.ExecuteNonQuery();
             }
         }

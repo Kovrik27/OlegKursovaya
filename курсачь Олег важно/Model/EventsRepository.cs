@@ -59,6 +59,7 @@ namespace курсачь_Олег_важно.Model
 
         internal void AddEvent(Events events)
         {
+            events.OrganizerId = events.Organizer.Id;
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return;
@@ -74,7 +75,7 @@ namespace курсачь_Олег_важно.Model
                 mc.Parameters.Add(new MySqlParameter("organizerId", events.OrganizerId));
                 mc.ExecuteNonQuery();
             }
-
+             
         }
 
         internal void UpdateEvent(Events events)
@@ -83,12 +84,12 @@ namespace курсачь_Олег_важно.Model
             if (connect == null)
                 return;
 
-            string sql = "UPDATE Event SET Name = @name, Location = @location, Date = @date" + events.Id;
+            string sql = $"UPDATE Events SET Name = @name, Date = @date, Location = @location where ID = {events.Id}";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("name", events.Name));
-                mc.Parameters.Add(new MySqlParameter("location", events.Location));
                 mc.Parameters.Add(new MySqlParameter("date", events.Date));
+                mc.Parameters.Add(new MySqlParameter("location", events.Location));
                 mc.Parameters.Add(new MySqlParameter("organizerId", events.OrganizerId));
                 mc.ExecuteNonQuery();
             }

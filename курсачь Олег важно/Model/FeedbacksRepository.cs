@@ -70,13 +70,14 @@ namespace курсачь_Олег_важно.Model
 
             int id = DB.Instance.GetAutoID("Feedback");
 
-            string sql = "INSERT INTO Feedback VALUES (0, @comment, @rating, @eventid, @participantid)";
+            string sql = "INSERT INTO Feedback VALUES (0, @eventid, @participantid, @participantName,  @rating, @comment)";
             using (var mc = new MySqlCommand(sql, connect))
             {
-                mc.Parameters.Add(new MySqlParameter("comment", feedback.Comment));
-                mc.Parameters.Add(new MySqlParameter("rating", feedback.Rating));
                 mc.Parameters.Add(new MySqlParameter("eventid", feedback.EventId));
                 mc.Parameters.Add(new MySqlParameter("participantid", feedback.ParticipantId));
+                mc.Parameters.Add(new MySqlParameter("rating", feedback.Rating));
+                mc.Parameters.Add(new MySqlParameter("comment", feedback.Comment));
+                mc.Parameters.Add(new MySqlParameter("participantName", feedback.Participant.Name));
                 mc.ExecuteNonQuery();
             }
 
