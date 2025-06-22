@@ -35,14 +35,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <!-- Таблица организаторов -->
-            <ListView Grid.Row="1" ItemsSource="{Binding Organizers}" SelectedItem="{Binding SelectedOrganizer}">
+            <ListView Grid.Row="1" ItemsSource="{Binding Organizers}" SelectedItem="{Binding Organizer}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Lastname}"/>
                         <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding  Name}"/>
-                        <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Firstname}"/>
-                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Number}"/>
-                        <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Specialization}"/>
+                        <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Surname}"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}"/>
+                        <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Speciality}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,19 +24,41 @@ namespace курсачь_Олег_важно.ViewModel
                 Signal();
             }
         }
+
+        private Events selectedEvent;
+        public Events SelectedEvent
+        {
+            get => selectedEvent;
+            set
+            {
+                selectedEvent = value;
+                Signal();
+            }
+        }
+
+        private ObservableCollection<Events> events;
+        public ObservableCollection<Events> Events
+        {
+            get => events;
+            set
+            {
+                events = value;
+                Signal();
+            }
+        }
         public AddParticipantVM()
         {
-
+            Events = new ObservableCollection<Events>(EventsRepository.Instance.GetAllEvents());
             Save = new CommandVM(() =>
             {
 
-                //if (Participant.Id == 0)
-                //    //ParticipantRepository.Instance.AddParticipantOnEvent(Participant);
-                //else
-                //    ParticipantRepository.Instance.UpdateParticipant(Participant);
+                if (Participant.Id == 0)
+                    ParticipantRepository.Instance.AddParticipantOnEvent(Participant, SelectedEvent.Id);
+                else
+                            ParticipantRepository.Instance.UpdateParticipant(Participant);
 
-                //OrganizersWindow organizersWindow = new OrganizersWindow();
-                //organizersWindow.Show();
+                ParticipantsWindow participantsWindow = new ParticipantsWindow();
+                participantsWindow.Show();
 
             });
 

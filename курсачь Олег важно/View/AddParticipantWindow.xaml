@@ -16,7 +16,8 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel DataContext="{Binding Participant}">
@@ -24,19 +25,22 @@
                    HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
             <Label Content="Фамилия участника:"/>
-            <TextBox Text="{Binding LastName }"/>
+            <TextBox Text="{Binding Lastname }"/>
             <Label Content="Имя участника:"/>
             <TextBox Text="{Binding Name }"/>
             <Label Content="Отчество участника:"/>
             <TextBox Text="{Binding Surname }"/>
             <Label Content="Номер телефона:"/>
-            <TextBox Text="{Binding Namber }"/>
-            <Label Content="Мероприятие:"/>
-            <ComboBox Text="{Binding Event }"/>
+            <TextBox Text="{Binding Phone }"/>
 
-           
         </StackPanel>
         <StackPanel Grid.Row="1">
+            <Label Content="Выберите мероприятие:"/>
+            <ComboBox ItemsSource="{Binding Events}" 
+          SelectedItem="{Binding SelectedEvent}" 
+          DisplayMemberPath="Name" />
+        </StackPanel>
+        <StackPanel Grid.Row="3">
             <Button Content="Добавить" Width="120" Height="35" 
              HorizontalAlignment="Center" Background="#FF4CAF50" 
              Foreground="White" Command="{Binding Save}"/>

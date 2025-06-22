@@ -21,7 +21,17 @@ namespace курсачь_Олег_важно.ViewModel
                 Signal();
             }
         }
-        public Organizer SelectedOrganizer {  get; set; }
+        public Organizer organizer {  get; set; }
+
+        public Organizer Organizer
+        {
+            get => organizer;
+            set
+            {
+                organizer = value;
+                Signal();
+            }
+        }
         public CommandVM OpenEditOrganizerWindow { get; set; }
 
         public CommandVM OpenAddOrganizerWindow
@@ -41,9 +51,9 @@ namespace курсачь_Олег_важно.ViewModel
             });
             OpenEditOrganizerWindow = new CommandVM(() =>
             {
-                if (SelectedOrganizer==null)
+                if (Organizer == null)
                     return;
-                AddOrganizerWindow addOrganizerWindow = new AddOrganizerWindow(SelectedOrganizer);
+                AddOrganizerWindow addOrganizerWindow = new AddOrganizerWindow(Organizer);
                 addOrganizerWindow.Show();
             });
         }

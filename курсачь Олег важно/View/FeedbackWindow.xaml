@@ -34,12 +34,12 @@
             <ListView ItemsSource="{Binding Feedbacks}" SelectedItem="{Binding SelectedFeedback}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Фамилия " DisplayMemberBinding="{Binding Lastname}"/>
-                        <GridViewColumn Header="Имя " DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Отчество "  DisplayMemberBinding="{Binding Firstname}"/>
-                        <GridViewColumn Header="Отзыв"  DisplayMemberBinding="{Binding Feedback}"/>
-                        <GridViewColumn Header="Мероприятие"  DisplayMemberBinding="{Binding Event}"/>
-                        <GridViewColumn Header="Оценка"  DisplayMemberBinding="{Binding Rating}"/>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Participant.Lastname}"/>
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Participant.Name}"/>
+                        <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Participant.Surname}"/>
+                        <GridViewColumn Header="Отзыв" DisplayMemberBinding="{Binding Comment}"/>
+                        <GridViewColumn Header="Мероприятие" DisplayMemberBinding="{Binding Event.Name}"/>
+                        <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Rating}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

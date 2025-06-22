@@ -11,13 +11,13 @@ namespace курсачь_Олег_важно.ViewModel
 {
     public class ParticipantVM : BaseVM
     {
-        private ObservableCollection<Participant> participant;
-        public ObservableCollection<Participant> Participant
+        private ObservableCollection<Participant> participants;
+        public ObservableCollection<Participant> Participants
         {
-            get => participant;
+            get => participants;
             set
             {
-                participant = value;
+                participants = value;
                 Signal();
             }
         }
@@ -30,23 +30,23 @@ namespace курсачь_Олег_важно.ViewModel
             get; set;
         }
 
-        public CommandVM OpenEditParticipanttWindow
+        public CommandVM OpenEditParticipantWindow
         {
             get; set;
         }
 
         public ParticipantVM()
         {
-
-            Participant = new ObservableCollection<Participant>(ParticipantRepository.Instance.GetAllParticipant());
+            string sql = "SELECT * FROM Participant";
+            Participants = new ObservableCollection<Participant>(ParticipantRepository.Instance.GetAllParticipant(sql));
 
             OpenAddParticipantWindow = new CommandVM(() =>
             {
-                AddEventWindow addEventWindow = new AddEventWindow();
-                addEventWindow.Show();
+                AddParticipantWindow addParticipantWindow = new AddParticipantWindow();
+                addParticipantWindow.Show();
             });
 
-            OpenEditParticipanttWindow = new CommandVM(() =>
+            OpenEditParticipantWindow = new CommandVM(() =>
             {
                 if (SelectedParticipant == null)
                     return;

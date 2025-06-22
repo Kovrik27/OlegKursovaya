@@ -32,28 +32,30 @@ namespace курсачь_Олег_важно.Model
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return result;
+
             using (var mc = new MySqlCommand(sql, connect))
             using (var reader = mc.ExecuteReader())
             {
-                Feedback feedbacks;
-                int id;
                 while (reader.Read())
                 {
-                    feedbacks = new Feedback();
-                    feedbacks.Id = reader.GetInt32("ID");
+                    var feedbacks = new Feedback();
+                    feedbacks.Id = reader.GetInt32("FeedbackId");
                     feedbacks.Comment = reader.GetString("Comment");
                     feedbacks.Rating = reader.GetInt32("Rating");
+
                     feedbacks.Event = new Events()
                     {
-                        Name = reader.GetString("Title"),
+                        Id = reader.GetInt32("EventId"),
+                        Name = reader.GetString("EventName"),
                     };
+
                     feedbacks.Participant = new Participant()
                     {
-                        Lastname = reader.GetString("Lastname"),
-                        Name = reader.GetString("Name"),
-                        Surname = reader.GetString("Surname"),
-                        Event = reader.GetString("Event"),
-                        Phone = reader.GetString("Lastname"),
+                        Id = reader.GetInt32("ParticipantId"),
+                        Lastname = reader.GetString("ParticipantLastname"),
+                        Name = reader.GetString("ParticipantName"),
+                        Surname = reader.GetString("ParticipantSurname"),
+                        Phone = reader.GetString("ParticipantPhone"),
                     };
 
                     result.Add(feedbacks);
@@ -62,6 +64,7 @@ namespace курсачь_Олег_важно.Model
 
             return result;
         }
+
         internal void AddFeedback(Feedback feedback)
         {
             var connect = DB.Instance.GetConnection();
@@ -70,14 +73,13 @@ namespace курсачь_Олег_важно.Model
                 
             int id = DB.Instance.GetAutoID("Feedback");
 
-            string sql = "INSERT INTO Feedback VALUES (0, @eventid, @participantid, @participantName,  @rating, @comment)";
+            string sql = "INSERT INTO Feedback VALUES (0, @eventid, @participantid, @rating, @comment)";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("eventid", feedback.EventId));
                 mc.Parameters.Add(new MySqlParameter("participantid", feedback.ParticipantId));
                 mc.Parameters.Add(new MySqlParameter("rating", feedback.Rating));
                 mc.Parameters.Add(new MySqlParameter("comment", feedback.Comment));
-                mc.Parameters.Add(new MySqlParameter("participantName", feedback.Participant.Name));
                 mc.ExecuteNonQuery();
             }
 

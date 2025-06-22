@@ -28,7 +28,7 @@ namespace курсачь_Олег_важно.Model
         internal IEnumerable<Events> GetAllEvents()
         {
             var result = new List<Events>();
-            string sql = "SELECT e.ID, e.Name, e.Date, e.Location, o.Lastname FROM Events e JOIN Organizer o ON e.OrganizerId = o.ID";
+            string sql = "SELECT e.ID, e.Name, e.Date, e.Location, o.Lastname FROM events e JOIN Organizer o ON e.OrganizerId = o.ID";
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return result;
@@ -84,13 +84,13 @@ namespace курсачь_Олег_важно.Model
             if (connect == null)
                 return;
 
-            string sql = $"UPDATE Events SET Name = @name, Date = @date, Location = @location where ID = {events.Id}";
+            string sql = $"UPDATE Events SET Name = @name, Date = @date, Location = @location WHERE ID = @id";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("name", events.Name));
                 mc.Parameters.Add(new MySqlParameter("date", events.Date));
                 mc.Parameters.Add(new MySqlParameter("location", events.Location));
-                mc.Parameters.Add(new MySqlParameter("organizerId", events.OrganizerId));
+                mc.Parameters.Add(new MySqlParameter("id", events.Id));
                 mc.ExecuteNonQuery();
             }
         }

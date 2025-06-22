@@ -33,22 +33,60 @@ namespace курсачь_Олег_важно.Model
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return result;
+
+            // Сначала загружаем участников
             using (var mc = new MySqlCommand(sql, connect))
             using (var reader = mc.ExecuteReader())
             {
-                Participant participants;
-                int id;
                 while (reader.Read())
                 {
-                    participants = new Participant();
-                    participants.Id = reader.GetInt32("ID");
-                    participants.Lastname = reader.GetString("Lastname");
-                    participants.Name = reader.GetString("Name");
-                    participants.Surname = reader.GetString("Surname");
-                    participants.Phone = reader.GetString("Phone");
-                    participants.Event = reader.GetString("Event");
+                    var participant = new Participant();
+                    participant.Id = reader.GetInt32("ID");
+                    participant.Lastname = reader.GetString("Lastname");
+                    participant.Name = reader.GetString("Name");
+                    participant.Surname = reader.GetString("Surname");
+                    participant.Phone = reader.GetString("Phone");
 
-                    result.Add(participants);
+                    // Инициализируем коллекцию EventParticipants
+                    participant.EventParticipants = new List<EventParticipants>();
+
+                    result.Add(participant);
+                }
+            }
+
+            // Теперь для каждого участника загружаем связанные мероприятия
+            foreach (var participant in result)
+            {
+                string eventSql = @"
+            SELECT e.ID, e.Name 
+            FROM Events e
+            INNER JOIN EventsParticipants ep ON e.ID = ep.EventID
+            WHERE ep.ParticipantID = @participantId";
+
+                using (var mc = new MySqlCommand(eventSql, connect))
+                {
+                    mc.Parameters.AddWithValue("@participantId", participant.Id);
+                    using (var reader = mc.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var ev = new Events()
+                            {
+                                Id = reader.GetInt32("ID"),
+                                Name = reader.GetString("Name")
+                            };
+
+                            var ep = new EventParticipants()
+                            {
+                                EventID = ev.Id,
+                                ParticipantID = participant.Id,
+                                Event = ev,
+                                Participant = participant
+                            };
+
+                            participant.EventParticipants.Add(ep);
+                        }
+                    }
                 }
             }
 
@@ -75,7 +113,6 @@ namespace курсачь_Олег_важно.Model
                     participants.Name = reader.GetString("Name");
                     participants.Surname = reader.GetString("Surname");
                     participants.Phone = reader.GetString("Phone");
-                    participants.Event = reader.GetString("Event");
 
                     result.Add(participants);
                 }
@@ -83,41 +120,41 @@ namespace курсачь_Олег_важно.Model
 
             return result;
         }
-        internal void AddParticipantOnEvent(Participant participant, int eventid)
+        internal int AddParticipantOnEvent(Participant participant, int eventid)
         {
             var connect = DB.Instance.GetConnection();
             if (connect == null)
-                return;
+                return 0;
 
-            //переменная для добавления в кросс-таблицу
             int participantId;
 
-            int id = DB.Instance.GetAutoID("Participant");
-
-            string sql = "INSERT INTO Participants VALUES (0, @lastname, @name, @surname, @phone, @email)";
+            string sql = "INSERT INTO Participant (Lastname, Name, Surname, Phone) VALUES (@lastname, @name, @surname, @phone)";
             using (var mc = new MySqlCommand(sql, connect))
             {
-                mc.Parameters.Add(new MySqlParameter("lastname", participant.Lastname));
-                mc.Parameters.Add(new MySqlParameter("name", participant.Name));
-                mc.Parameters.Add(new MySqlParameter("surname", participant.Surname));
-                mc.Parameters.Add(new MySqlParameter("phone", participant.Phone));
-                mc.Parameters.Add(new MySqlParameter("event", participant.Event));
+                mc.Parameters.AddWithValue("@lastname", participant.Lastname);
+                mc.Parameters.AddWithValue("@name", participant.Name);
+                mc.Parameters.AddWithValue("@surname", participant.Surname);
+                mc.Parameters.AddWithValue("@phone", participant.Phone);
+
                 mc.ExecuteNonQuery();
 
-                //Получение айди последнего добавленного участника     
+                // Получаем последний вставленный ID
+                mc.CommandText = "SELECT LAST_INSERT_ID()";
                 participantId = Convert.ToInt32(mc.ExecuteScalar());
             }
 
-
-            string sql2 = "INSERT INTO EventParticipant VALUES (@EventID, @ParticipantID";
+            string sql2 = "INSERT INTO EventsParticipants (EventID, ParticipantID) VALUES (@EventID, @ParticipantID)";
             using (var mc = new MySqlCommand(sql2, connect))
             {
-                mc.Parameters.Add(new MySqlParameter("EventID", eventid));
-                mc.Parameters.Add(new MySqlParameter("ParticipantID", participantId));
+                mc.Parameters.AddWithValue("@EventID", eventid);
+                mc.Parameters.AddWithValue("@ParticipantID", participantId);
 
                 mc.ExecuteNonQuery();
             }
+
+            return participantId;
         }
+
 
         internal void UpdateParticipant(Participant participant)
         {
@@ -125,22 +162,17 @@ namespace курсачь_Олег_важно.Model
             if (connect == null)
                 return;
 
-            string sql = "UPDATE Participants SET Lastname = @lastname, Name = @name, Surname = @surname, Phone = @phone, Email = @email" + participant.Id;
+            string sql = "UPDATE Participants SET Lastname = @lastname, Name = @name, Surname = @surname, Phone = @phone" + participant.Id;
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("lastname", participant.Lastname));
                 mc.Parameters.Add(new MySqlParameter("name", participant.Name));
                 mc.Parameters.Add(new MySqlParameter("surname", participant.Surname));
                 mc.Parameters.Add(new MySqlParameter("phone", participant.Phone));
-                mc.Parameters.Add(new MySqlParameter("event", participant.Event));
                 mc.ExecuteNonQuery();
             }
         }
 
-        internal IEnumerable<Participant> GetAllParticipant()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

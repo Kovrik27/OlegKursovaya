@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:курсачь_Олег_важно.View"
+        xmlns:vm="clr-namespace:курсачь_Олег_важно.ViewModel"
         mc:Ignorable="d"
+        DataContext="{DynamicResource participantVM}"
         Title="ParticipantsWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <vm:ParticipantVM x:Key="participantVM"/>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -33,11 +39,11 @@
             <ListView Grid.Row="1" ItemsSource="{Binding Participants}" SelectedItem="{Binding SelectedParticipant}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}"/>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Lastname}"/>
                         <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Surname}"/>
-                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding PhoneNumber}"/>
-                        <GridViewColumn Header="Мероприятие" DisplayMemberBinding="{Binding Event}"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}"/>
+                        <GridViewColumn Header="Мероприятие" DisplayMemberBinding="{Binding EventsNames}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

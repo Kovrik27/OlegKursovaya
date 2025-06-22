@@ -35,7 +35,7 @@ namespace курсачь_Олег_важно.ViewModel
 
         public FeedbackVM()
         {
-            string sql = "SELECT * FROM Feedback";
+            string sql = "SELECT f.Id as FeedbackId, f.EventId, e.Id as EventId, e.Name as EventName, f.ParticipantId, p.Id as ParticipantId, p.Name as ParticipantName, p.Lastname as ParticipantLastname,p.Surname as ParticipantSurname, p.Phone as ParticipantPhone, f.Rating, f.Comment FROM Feedback f JOIN Events e ON f.EventId = e.Id JOIN Participant p ON f.ParticipantId = p.Id";
             Feedbacks = new ObservableCollection<Feedback>(FeedbacksRepository.Instance.GetAllFeedbacks(sql));
 
             OpenAddFeedbackWindow = new CommandVM(() =>

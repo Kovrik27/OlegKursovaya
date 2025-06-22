@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using курсачь_Олег_важно.Model;
+using курсачь_Олег_важно.View;
 
 namespace курсачь_Олег_важно.ViewModel
 {
@@ -41,12 +42,18 @@ namespace курсачь_Олег_важно.ViewModel
                 if (Events.Id == 0)
                 {
                     EventsRepository.Instance.AddEvent(Events);
+                    EventsWindow eventsWindow = new EventsWindow();
+                    eventsWindow.Show();
                 }
                 else
                 {
                     EventsRepository.Instance.UpdateEvent(Events);
+                    EventsWindow eventsWindow = new EventsWindow();
+                    eventsWindow.Show();
                 }
             });
+
+           
 
         }
 

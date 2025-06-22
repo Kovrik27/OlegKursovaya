@@ -16,33 +16,36 @@
     
         <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Левая часть - форма ввода -->
-        <StackPanel DataContext="{Binding Feedback}">
-            <Label Content="Выберите мероприятие:"/>
-            <ComboBox ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}"/> 
-            <Label Content="Фамилия участника:"/>
-            <TextBox Text="{Binding Lastname}"/>
-            <Label Content="Имя участника:"/>
-            <TextBox Text="{Binding Name}"/>
-            <Label Content="Отчество участника:"/>
-            <TextBox Text="{Binding Surname}"/>
-            <Label Content="Оценка участника(По пятибалльной шкале):"/>
+        <StackPanel Grid.Row="1">
+            <Label Content="Выберите участника:"/>
+            <ComboBox ItemsSource="{Binding Participants}" 
+SelectedItem="{Binding SelectedParticipant}" 
+DisplayMemberPath="Lastname" />
+        </StackPanel>
+        <StackPanel DataContext="{Binding Feedback}" Grid.Row="2">
+                <Label Content="Оценка участника(По пятибалльной шкале):"/>
             <TextBox Text="{Binding Rating}"/>
 
             <Label Content="Текст отзыва:"/>
             <TextBox Text="{Binding Comment}"
                      AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="30"/>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="0">
+            <Label Content="Выберите мероприятие:"/>
+            <ComboBox ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" DisplayMemberPath="Name"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
             <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Center" Command="{Binding Save}"/>
             <Button Content="Изменить " Width="120" Height="35" 
 Foreground="Black" Command="{Binding Save}"/>
         </StackPanel>
 
-        
     </Grid>
 </Window>
