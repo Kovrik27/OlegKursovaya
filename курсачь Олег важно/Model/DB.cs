@@ -15,10 +15,10 @@ namespace курсачь_Олег_важно.Model
         private DB()
         {
             MySqlConnectionStringBuilder stringBuilder = new();
-            stringBuilder.UserID = "root";
-            stringBuilder.Password = "Dikyiyaz12122005";
+            stringBuilder.UserID = "student";
+            stringBuilder.Password = "student";
             stringBuilder.Database = "socialoleg";
-            stringBuilder.Server = "localhost";
+            stringBuilder.Server = "192.168.200.13";
             stringBuilder.CharacterSet = "utf8mb4";
 
             mySqlConnection = new MySqlConnection(stringBuilder.ToString());
