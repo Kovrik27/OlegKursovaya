@@ -28,7 +28,7 @@ namespace курсачь_Олег_важно.Model
         internal IEnumerable<Events> GetAllEvents()
         {
             var result = new List<Events>();
-            string sql = "SELECT e.ID, e.Name, e.Date, e.Location, o.Lastname FROM events e JOIN Organizer o ON e.OrganizerId = o.ID";
+            string sql = "SELECT e.ID, e.Name, e.Date, e.Location, o.Lastname FROM Events e JOIN Organizer o ON e.OrganizerId = o.ID";
             var connect = DB.Instance.GetConnection();
             if (connect == null)
                 return result;

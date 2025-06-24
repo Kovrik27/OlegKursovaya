@@ -37,7 +37,7 @@ namespace курсачь_Олег_важно.ViewModel
 
         public ParticipantVM()
         {
-            string sql = "SELECT * FROM Participant";
+            string sql = "SELECT * FROM Participants";
             Participants = new ObservableCollection<Participant>(ParticipantRepository.Instance.GetAllParticipant(sql));
 
             OpenAddParticipantWindow = new CommandVM(() =>

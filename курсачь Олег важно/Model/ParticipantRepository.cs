@@ -60,7 +60,7 @@ namespace курсачь_Олег_важно.Model
                 string eventSql = @"
             SELECT e.ID, e.Name 
             FROM Events e
-            INNER JOIN EventsParticipants ep ON e.ID = ep.EventID
+            INNER JOIN EventParticipants ep ON e.ID = ep.EventID
             WHERE ep.ParticipantID = @participantId";
 
                 using (var mc = new MySqlCommand(eventSql, connect))
@@ -128,7 +128,7 @@ namespace курсачь_Олег_важно.Model
 
             int participantId;
 
-            string sql = "INSERT INTO Participant (Lastname, Name, Surname, Phone) VALUES (@lastname, @name, @surname, @phone)";
+            string sql = "INSERT INTO Participants (Lastname, Name, Surname, Phone) VALUES (@lastname, @name, @surname, @phone)";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.AddWithValue("@lastname", participant.Lastname);

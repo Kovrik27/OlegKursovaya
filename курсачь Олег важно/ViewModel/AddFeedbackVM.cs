@@ -79,7 +79,7 @@ namespace курсачь_Олег_важно.ViewModel
         public AddFeedbackVM()
         {
             Events = new ObservableCollection<Events>(EventsRepository.Instance.GetAllEvents());
-            string sql = "SELECT * FROM Participant";
+            string sql = "SELECT * FROM Participants";
             Participants = new ObservableCollection<Participant>(ParticipantRepository.Instance.GetAllParticipant(sql));
             Save = new CommandVM(() =>
             {
